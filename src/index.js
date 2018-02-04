@@ -6,9 +6,11 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { connect } from 'react-redux'
 
-export default class Main extends Component {
+class Main extends Component {
   render() {
+    // console.log(this.props.stateFromStore);
     return (
       <View style={styles.container}>
         <Text>I'm the Main component</Text>
@@ -16,6 +18,14 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    stateFromStore : state
+  }
+}
+
+export default connect(mapStateToProps)(Main)
 
 const styles = StyleSheet.create({
   container: {

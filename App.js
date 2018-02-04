@@ -5,8 +5,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import Main from './src'
+import { myReducers } from './reducers'
 
-const store = createStore(()=>[])
+const store = createStore(myReducers)
 
 export default class App extends Component {
   render() {
