@@ -10,15 +10,25 @@ import {
 import { connect } from 'react-redux'
 
 class Main extends Component {
+
+  onAddUser = () => {
+    const id = this.props.myList.length + 1
+    const user = {
+      id: id,
+      name:"Thuck key am"
+    }
+    this.props.dispatch({type:"ADD_USER", payload:user})
+  }
+
   render() {
-    console.log(this.props.stateFromStore);
+    console.log(this.props.myList);
     return (
       <View style={styles.container}>
-        <Text>I'm the Main component</Text>
+        <Text onPress={this.onAddUser}>tambah user</Text>
         <ScrollView>
           {this.props.myList.map((obj,i) => {
             return (
-              <Text key={i}>{obj.name}</Text>
+              <Text key={i}>{obj.id}{obj.name}</Text>
             )
           })}
         </ScrollView>

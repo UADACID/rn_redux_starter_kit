@@ -6,7 +6,17 @@ let initialState = [
 ] //inisiasi value awal untuk state
 
 const myList = (state = initialState, action) => {
-  return state
+  switch (action.type) {
+    case "ADD_USER":{
+        const user = action.payload // object payload dari aksi onAddUser. ex. {id:3, name:'Aji'}
+        let users = state.concat([user]) // membuat obj user menjadi array dan di gabungkan dengan array state
+        return users //mengembalikan nilai user sebagai state yang sudah bertambah datanya
+      }
+      break;
+    default:
+      return state
+  }
+
 }
 
 export const myReducers = combineReducers({
