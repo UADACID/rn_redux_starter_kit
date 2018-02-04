@@ -13,20 +13,17 @@ import { connect } from 'react-redux'
 
 class Main extends Component {
 
-  state = {
-    name : ""
-  }
-
   onAddUser = () => {
-    const id = this.props.myList.length + 1
-    const name = this.props.name
+    const { myList, name, addUser, clearName } = this.props
+    const id = myList.length + 1
     const user = {
-      id: id,
-      name: name
+      id,
+      name
     }
-    this.props.addUser(user)
-    this.props.clearName()
-
+    if (name != '') {
+      addUser(user)
+      clearName()
+    }
   }
 
   onChangeName = (name) => {
@@ -38,7 +35,7 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.myList);
+    // console.log(this.props.myList);
     return (
       <View style={styles.container}>
         <TextInput
