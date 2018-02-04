@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 
-let initialState = [] //inisiasi value awal untuk state
+let initialState = [
+  {id:1, name:"Pratama"},
+  {id:2, name:"Setya"},
+] //inisiasi value awal untuk state
 
 const myList = (state = initialState, action) => {
   return state
