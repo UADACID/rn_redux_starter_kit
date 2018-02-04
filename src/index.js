@@ -24,17 +24,17 @@ class Main extends Component {
       id: id,
       name: name
     }
-    this.props.dispatch({type:"ADD_USER", payload:user})
-    this.props.dispatch({type:"REMOVE_NAME"})
+    this.props.addUser(user)
+    this.props.clearName()
 
   }
 
   onChangeName = (name) => {
-    this.props.dispatch({type:"CHANGE_NAME", payload:name})
+    this.props.onChangeName(name)
   }
 
   onRemoveUser = (id) => {
-    this.props.dispatch({type:"REMOVE_USER", payload:id})
+    this.props.removeUser(id)
   }
 
   render() {
@@ -62,6 +62,21 @@ class Main extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  const addUser = (user) => dispatch({type:"ADD_USER", payload:user})
+  const clearName = () => dispatch({type:"REMOVE_NAME"})
+  const onChangeName = (name) => dispatch({type:"CHANGE_NAME", payload:name})
+  const removeUser = (id) => dispatch({type:"REMOVE_USER", payload:id})
+
+  return {
+    addUser,
+    clearName,
+    onChangeName,
+    removeUser
+  }
+
+}
+
 const mapStateToProps = (state) => {
   return {
     myList : state.myList,
@@ -69,7 +84,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
 
 const styles = StyleSheet.create({
   container: {
