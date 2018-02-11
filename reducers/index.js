@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux'
 import { myList } from './myList' // from another file
 import { name } from './name'
-import authReducer from './authReducers';
+import { navReducer } from '../navigator'
+// console.log(navReducer);
 
 const rootReducers = {
   myList,
   name,
-  authReducer
+  nav:navReducer
 }
 
 // export default myReducers

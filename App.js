@@ -9,6 +9,8 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import Main from './src'
+
+import RootNavigator from './navigator'
 import configureStore from './store';
 const { persistor, store } = configureStore();
 console.log(store);
@@ -30,7 +32,7 @@ export default class App extends Component {
           loading={<ActivityIndicator />}
           onBeforeLift={onBeforeLift}
           persistor={persistor}>
-          <Main />
+          <RootNavigator />
         </PersistGate>
       </Provider>
     );

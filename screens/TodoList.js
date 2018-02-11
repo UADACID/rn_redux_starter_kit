@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux'
 
-class Main extends Component {
+class TodoList extends Component {
 
   componentDidMount(){
     this.props.fetchUser()
@@ -39,7 +39,6 @@ class Main extends Component {
   }
 
   render() {
-    console.log(this.props.myList);
     return (
       <View style={styles.container}>
         <TextInput
@@ -50,6 +49,9 @@ class Main extends Component {
         />
         <TouchableOpacity onPress={this.onAddUser}  style={styles.addButton}>
           <Text style={styles.textButton}>tambah user</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('PageTwo')}  style={[styles.addButton,{margin:5, backgroundColor:'green'}]}>
+          <Text style={styles.textButton}>Move</Text>
         </TouchableOpacity>
         <ScrollView>
           {this.props.myList.map((obj,i) => {
@@ -87,7 +89,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
 
 const styles = StyleSheet.create({
   container: {
