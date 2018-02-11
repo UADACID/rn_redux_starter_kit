@@ -13,6 +13,10 @@ import { connect } from 'react-redux'
 
 class Main extends Component {
 
+  componentDidMount(){
+    this.props.fetchUser()
+  }
+
   onAddUser = () => {
     const { myList, name, addUser, clearName } = this.props
     const id = myList.length + 1
@@ -35,7 +39,7 @@ class Main extends Component {
   }
 
   render() {
-    // console.log(this.props.myList);
+    console.log(this.props.myList);
     return (
       <View style={styles.container}>
         <TextInput
@@ -69,12 +73,14 @@ const mapDispatchToProps = (dispatch) => {
     addUser,
     clearName,
     onChangeName,
-    removeUser
+    removeUser,
+    fetchUser: () => dispatch({type:'FETCH_USER'})
   }
 
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     myList : state.myList,
     name : state.name
